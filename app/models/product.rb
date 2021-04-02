@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+  include LikeSearchable
+  include Paginatable
+
   belongs_to :productable, polymorphic: true
 
   has_many :product_categories, dependent: :destroy
@@ -12,8 +15,7 @@ class Product < ApplicationRecord
   validates :image, presence: true
   validates :status, presence: true
 
-  enum status: { available: 1, unavailable: 2 }
+  validates :featured, presence: true, if: -> { featured.nil? }
 
-  include NameSearchable
-  include Paginatable
+  enum status: { available: 1, unavailable: 2 }
 end

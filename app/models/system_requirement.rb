@@ -8,6 +8,6 @@ class SystemRequirement < ApplicationRecord
   validates :storage, presence: true
   validates :processor, presence: true
 
-  include NameSearchable
+  include LikeSearchable
   include Paginatable
 end

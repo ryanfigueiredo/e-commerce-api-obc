@@ -40,7 +40,7 @@ class Admin::V1::ProductsController < Admin::V1::ApiController
   def product_params
     return {} unless params.has_key?(:product)
     permitted_params = params.require(:product).permit(:id, :name, :description, :image, :price, :productable,
-                                                       :status, category_ids: [])
+                                                       :status, :featured, category_ids: [])
     permitted_params.merge(productable_params)
   end
 
